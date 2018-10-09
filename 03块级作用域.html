@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function () {
+            var abtn = document.getElementsByTagName('input');
+            function test(i) {
+                console.log(i)
+                abtn[i].onclick=function () {
+                    alert(i)
+                }
+            }
+
+            for (var i = 0; i < abtn.length; i++) {
+                // (function (i) {
+                //     console.log(i)
+                //     abtn[i].onclick=function () {
+                //         alert(i)
+                //     }
+                // })(i)
+                test(i)
+
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="按钮1">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+</body>
+</html>
