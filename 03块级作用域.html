@@ -6,21 +6,19 @@
     <script>
         window.onload = function () {
             var abtn = document.getElementsByTagName('input');
-            function test(i) {
-                console.log(i)
-                abtn[i].onclick=function () {
-                    alert(i)
-                }
-            }
+            // function test(i) {
+            //     console.log(i)
+            //     abtn[i].onclick=function () {
+            //         alert(i)
+            //     }
+            // }
 
             for (var i = 0; i < abtn.length; i++) {
-                // (function (i) {
-                //     console.log(i)
-                //     abtn[i].onclick=function () {
-                //         alert(i)
-                //     }
-                // })(i)
-                test(i)
+                    console.log(i)
+                    abtn[i].onclick=function () {
+                        alert(i)
+                    }
+                // test(i)
 
             }
         }
