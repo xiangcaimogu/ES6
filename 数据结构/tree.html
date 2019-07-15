@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+var BitTreeNode=function (data) {
+    this.data=data
+    this.leftChild=null
+    this.rightChild=null
+    this.parentNode=null
+}
+function BinaryTree(){
+    var	root	= null; //根节点
+//	采⽤⼴义表表示的建⽴⼆叉树⽅法
+    this.init_tree = function(string){
+        var stack=new stack()
+        var k=0
+        var new_node=null
+
+        for (var i=0; i<string.length;i++){
+            var item= string[i];
+            if(item=='('){
+                k=1
+                stack.push(new_node)
+            }else if(item==')'){
+                stack.pop()
+            }else if(item==','){
+                k=2
+            }else{
+                new_node=BinaryTree(item)
+                if(root=null){
+                    root=new_node;
+                }else {
+                    if (k=1){
+                        var top_item=stack.top()
+                        top_item.leftChild=new_node
+                        new_node.parentNode=top_item
+                    }else {
+                        var top_item=stack.top()
+                        top_item.rightChild=new_node
+                        new_node.parentNode=top_item
+                    }
+                }
+            }
+        }
+    }
+}
+</script>
+</body>
+</html>

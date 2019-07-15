@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //先进后出
+    function Stack() {
+        var items = [];
+        //队列的尾部添加一个元素
+        this.enqueue=function (item) {
+            items.push(item)
+        }
+        //移除头部
+        this.dequeue=function () {
+            return items.shift()
+        }
+        this.head=function () {
+            return items[0]
+        }
+        this.isEmpty=function () {
+           return items.length === 0
+        }
+        this.size=function(){
+            return items.length;
+        }
+        this.clear=function () {
+            items=[];
+        }
+    }
+//1 1 2 3 5 8 13 21 .....第n个数值
+function fibonacci(n){
+    var queue=new Stack()
+    queue.enqueue(1)
+    queue.enqueue(1)
+    var index = 0
+    while(index<n-2){
+        var a=queue.dequeue()+queue.head()
+        queue.enqueue(a)
+        index++
+    }
+    queue.dequeue()
+    return queue.head()
+}
+console.log(fibonacci(3))
+function print_yanghui(n) {
+    var queue=new Stack()
+    queue.enqueue(1)
+    for(var i=1;i<=n;i++){
+        var pre=0
+        var line = ''
+        for (var j=0; j<i; j++){
+            var item=queue.dequeue()
+            line+=item + ' '
+
+            var value=item + pre
+            pre=item
+            queue.enqueue(value)
+
+        }
+        queue.enqueue(1)
+        console.log(line)
+    }
+}
+    print_yanghui(5)
+</script>
+</body>
+</html>

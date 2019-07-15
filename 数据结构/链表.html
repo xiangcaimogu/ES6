@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+var Node=function (data) {
+    this.data=data;
+    this.next=null
+}
+var node1=new Node(1)
+var node2=new Node(2)
+var node3=new Node(3)
+
+node1.next=node2;//链式连接；node1的next连接了node2
+node2.next=node3;
+
+console.log(node1.data)
+console.log(node1.next.data)//node1的next连接了node2的data
+function LinkList() {
+    var Node=function (data) {
+        this.data=data;
+        this.next=null
+    }
+    var length=0;
+    var head=null;//头节点
+    var tail=null//尾节点
+    //尾部添加节点
+    this.append=function (data) {
+        //创建新节点
+        var new_node=new Node(data)
+        if(head==null){
+            head=new_node
+            tail=new_node
+        }else{
+            tail.next=new_node//当前尾节点的next等于这个新添加的节点
+            tail=new_node//在把为节点重设为这个新添加的节点
+        }
+        length+=1
+        return true
+    }
+    //打印遍历节点data
+    this.print=function () {
+        var curr_node = head;
+        while (curr_node){//只要头部有节点就循环
+            console.log(curr_node.data)
+            curr_node = curr_node.next//next指向下一个节点，要打印下一个节点的data，就要给curr_node赋值为下一个节点
+        }
+    }
+    //获得指定位置的节点
+    this.get_node=function (index) {
+        if(index<0 || index>length){
+            return false
+        }else {
+            var curr_ndoe=head
+            var node_index=index
+            while(node_index-- >0){
+                node_index--
+                curr_ndoe=curr_ndoe.next()
+            }
+            return curr_ndoe
+        }
+    }
+    //指定位置插入节点
+    this.insert=function (index,data) {
+         if(index<0 || index>length){
+             return false
+         }else if(index== length){
+             return this.append(data)
+         }else {
+             var new_node=new Node(data)
+             if(index==0){
+                 new_node.text=head
+                 head=new_node
+             }else {
+                 var insert_index=1;
+                 var curr_node=head//curr复制头部
+                 while (insert_index<index){
+                     insert_index++
+                     curr_node=curr_node.next//从头部开始循环到要插入位置的前一个节点，然后复制给curr_node
+                 }
+                 var next_node=curr_node.next//next把当前要插入位置的下一个节点复制下来，例如当在1这个位置插入的时候，就相当于复制了2
+                 curr_node.next=new_node//把头部的next指向这个新插入的
+                 new_node.next=next_node//再把新插入的指向之前头部指向的2，这样2就变成3，new节点变成了2
+             }
+         }
+    }
+    //移除节点
+    this.remove=function (index) {
+        if(index<0 || index>=length){
+            return false
+        }else{
+            var del_node=null
+            if(index=0){
+                del_node=head
+                head=head.next
+            }else {
+                var del_index=0
+                var pre_node=null//被刪除节点的前一个节点
+                var curr_node=head//需要删除的节点
+                while(del_index<index){
+                    del_index++
+                    pre_node=curr_node
+                    curr_node=curr_node.next
+                }
+                del_node=curr_node
+                pre_node.next=curr_node.next
+                if(curr_node.next == null){
+                    tail = pre_node
+                }
+            }
+            length-=1
+            del_node.next=null
+            return del_node.data
+        }
+    }
+}
+var link=new LinkList()
+    link.append(2)
+    link.append(4)
+    link.append(8)
+    link.print()
+</script>
+</body>
+</html>

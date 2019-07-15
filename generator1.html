@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function *show() {
+    alert('a')
+    let i = yield
+    alert('b')
+    alert(i)
+}
+let genObj=show();
+    genObj.next();
+    genObj.next(2);
+</script>
+</body>
+</html>

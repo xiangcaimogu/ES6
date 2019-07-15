@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //栈的定义，仅能够在栈顶进行操作，先进后出(后进先出)
+    //栈只有几个方法push pop top isEmpty size clear，没有其他，只有方法
+    //它是var一个数组，借用数组的方法，来实现栈的先进后出功能
+    //它只能对最后一个值(栈顶元素)进行操作，并且只有pop弹出栈顶元素
+
+    //建Stack类
+    function Stack() {
+        var items = [];//这里用var items没有用this.items 的原因：如果用this，就意味着外部能够访问（Stack.items），并且改变items的值，
+        // 那我们的push方法和其他方法就没有意义了，只能内部方法改变items，这样才安全，拿值也只需要pop方法拿值就好了
+        //items只是为内部方法提供的空数组，不可以让外部调用
+        this.push=function (item) {
+            items.push(item)
+        }
+        this.pop=function () {
+            return items.pop()
+        }
+        this.top=function () {
+            return items[items.length-1]
+        }
+        this.isEmpty=function () {
+           return items.length === 0
+        }
+        this.size=function(){
+            return items.length;
+        }
+        this.clear=function () {
+            items=[];
+        }
+    }
+
+    function isLeag (string) {
+        var stack= new Stack()
+        for (var i=0;i<string.length;i++){
+            if (string[i]=='('){
+                stack.push(string[i])
+            }else if(string[i]==')'){
+                if (stack.isEmpty()){
+                    return false
+                }else{
+                    stack.pop()
+                }
+            }
+        }
+        return stack.isEmpty()
+    }
+    console.log(isLeag('sadp(sda)dsad9)dsa'))
+
+    function calc_exp(exp) {
+        var stack=new Stack()
+        for (var i=0;i<exp.length;i++){
+            if (["+","-","*","/"].indexOf(exp[i])>=0){
+                var value1=stack.pop()
+                var value2=stack.pop()
+                var exp_str=value1+exp[i]+value2
+                stack.push(parseInt(eval(exp_str)))
+            }
+            else {
+                stack.push(exp[i])
+            }
+        }
+        return stack.pop()
+    }
+    console.log(calc_exp(["2","3","34","+","*"]))
+</script>
+</body>
+</html>
