@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //异步一定有回调函数
+setTimeout(function () {
+    console.log("....")
+})
+
+console.log("1111")
+var arr=[1,2,3,4]
+    //回调函数不一定异步
+arr.forEach(function (v,i) {
+    console.log(v)
+})
+console.log("2222")
+</script>
+</body>
+</html>
