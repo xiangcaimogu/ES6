@@ -4,9 +4,15 @@
     <meta charset="utf-8">
     <title></title>
     <script>
-    let [a,b]={a: 12, b: 45};
+    function show(...args){
+      fn(...args);
+    }
 
-    console.log(a,b);
+    function fn(a, b){
+      console.log(a+b);
+    }
+
+    show(12, 5);
     </script>
   </head>
   <body>
