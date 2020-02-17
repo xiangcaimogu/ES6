@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div.content {
+            display: none;
+            width: 300px;
+            height: 360px;
+            border: 1px soild #333333;
+        }
+
+        #wrap ul li.active {
+            background-color: #3081BF;
+            font-weight: bold;
+        }
+
+        #wrap ul li a {
+            display: inline-block;
+            width: 100px;
+            height: 100%;
+            color: #262626;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        #wrap ul li {
+            float: left;
+            width: 100px;
+            height: 100%;
+        }
+
+        #wrap {
+            width: 302px;
+            height: 402px;
+            margin: 100px auto;
+        }
+
+        ul {
+            list-style: none;
+            overflow: hidden;
+            border: 1px soild #3081BF;
+            width: 300px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        body {
+            background-color: beige;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <ul>
+            <li class="active">
+                <a href="javascript:void(0)">推荐</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">小说</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">导航</a>
+            </li>
+        </ul>
+        <div class="content" style="display: block;">推荐</div>
+        <div class="content">小说</div>
+        <div class="content">导航</div>
+    </div>
+
+</body>
+<script>
+    window.onload = function () {
+        var wrap = document.getElementById('wrap')
+        var tablis = wrap.children[0].getElementsByTagName('li');
+        var contentDivs = wrap.getElementsByTagName('div')
+        for (var i = 0; i < tablis.length; i++) {
+            tablis[i].onclick = (function (n) {
+                console.log(n);
+                return function () {
+                    for (var j = 0; j < tablis.length; j++) {
+                        tablis[j].className = ''
+                        contentDivs[j].style.display = "none"
+                    }
+                    this.className = 'active'
+                    contentDivs[n].style.display = 'block'
+                }
+            })(i)
+        }
+    }
+</script>
+
+</html>
