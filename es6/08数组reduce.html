@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script>
-    let arr=[12,69,180,8763];
 
-    let result=arr.reduce(function (tmp, item, index){
-      alert(tmp+','+item+','+index);
-      return tmp+item;//每次相加的结果给tmp,zai 在往下加item
-    });
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script>
 
-    alert(result);
-    </script>
-  </head>
-  <body>
+    // arr.reduce(function(prev,cur,index,arr){
+    // ...
+    // }, init);
 
-  </body>
+    // arr 表示原数组；
+    // prev 表示上一次调用回调时的返回值，或者初始值 init;
+    // cur 表示当前正在处理的数组元素；
+    // index 表示当前正在处理的数组元素的索引，若提供 init 值，则索引为0，否则索引为1；
+    // init 表示初始值
+
+    //去重
+    var arr = [3, 9, 4, 3, 6, 0, 9];
+    var newArr = arr.reduce(function (prev, cur) {
+      prev.indexOf(cur) === -1 && prev.push(cur);
+      return prev;
+    }, []);
+
+    let arr = [12, 69, 180, 8763];
+    let result = arr.reduce(function (tmp, item, index) {
+      console.log(tmp + ',' + item + ',' + index);
+      return tmp + item;//每次相加的结果给tmp,zai 在往下加item
+    }, 0);
+
+    console.log(result);
+  </script>
+</head>
+
+<body>
+
+</body>
+
 </html>
