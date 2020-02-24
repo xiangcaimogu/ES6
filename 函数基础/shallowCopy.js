@@ -2,14 +2,27 @@
 var a = 2;
 var b = a;
 b = 100;
-console.log(a)
-console.log(b)
+console.log(a)//2
+console.log(b)//100
 //引用类型：按引用地址传递，只拷贝了地址
 var arr = [1, 2, 3]
 var newArr= arr
 newArr.push(5)
 console.log(newArr)
 console.log(arr)
+
+// var a= {name:"张三"}
+// var b = a;
+// b.name="里斯";
+// console.log(a)//里斯
+// console.log(b)//里斯
+
+var a= {name:"张三"}
+var b={};
+b.name = a.name;
+b.name="里斯";
+console.log(a)//张三
+console.log(b)//里斯
 
 obj={
     name: '小马哥',
