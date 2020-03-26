@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <script>
 
     // arr.reduce(function(prev,cur,index,arr){
     // ...
@@ -19,7 +12,7 @@
     //去重
     var arr = [3, 9, 4, 3, 6, 0, 9];
     var newArr = arr.reduce(function (prev, cur) {
-      prev.indexOf(cur) === -1 && prev.push(cur);
+      !prev.includes(cur) && prev.push(cur);
       return prev;
     }, []);
 
@@ -30,11 +23,15 @@
     }, 0);
 
     console.log(result);
-  </script>
-</head>
 
-<body>
 
-</body>
+    let arr = [12, 69, 180, 8763];
+    let result = arr.reduce(function (tmp, item, index) {
+      if (index != arr.length - 1) { //不是最后一次
+        return tmp + item;
+      } else {                    //最后一次
+        return (tmp + item) / arr.length;
+      }
+    }, 0);
 
-</html>
+    console.log(result);

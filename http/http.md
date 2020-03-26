@@ -9,3 +9,27 @@
 //请求和响应过程中会经过大量的软件和设备，比如浏览器，路由器，WiFi路由，VPN软件等等，由于HTTP协议是明文传输的协议，也就是说中间件的任何设备都可以获取和识别更改这些信息
 //这都是由于“中间件”修改了正常的响应数据，在其中插入了自己的广告，更严重的是，信息的泄露对你带来伤害，某一个你在网上搜索了一下保险相关的内容，没多久就会接到保险公司的推销电话
 //问题不一定是百度，可能是中间数据传输的任何环节，核心原因是http的全裸式的明文传输
+
+
+
+请求行(请求方法  路径  协议)
+请求头(格式key:value)
+请求主体信息(可选)(发送的内容)
+POST /06/10/index.html HTTP 2.0
+
+Host:80
+content-type:applicatin/x-wwww-form-urlencoded
+content-length:5
+
+age=3
+
+
+
+响应行(协议  状态码 状态文字)
+响应头信息(格式为 key:value)
+主体信息
+HTTP2.0 200 ok
+Content-type:text/html
+Content-length:5
+
+hello word

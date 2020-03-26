@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <script>
+
         function User(name, pass) {
             this.name = name;
             this.pass = pass;
@@ -39,9 +34,3 @@
         v1.showName();
         v1.showPass();
         v1.showLevel();
-    </script>
-</head>
-<body>
-
-</body>
-</html>
