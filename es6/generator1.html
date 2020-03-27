@@ -8,12 +8,14 @@
 <script>
 function *show() {
     alert('a')
-    let i = yield
     alert('b')
+    let i = yield
+
     alert(i)
 }
 let genObj=show();
-    genObj.next();
+    genObj.next()
+
     genObj.next(2);
 </script>
 </body>
