@@ -6,7 +6,6 @@ arr.forEach(function (item, index, array) {
 });
 console.log(arr);   // [2,-4,6,8,-10]
 
-
 // 二、map()，用于遍历数组，//*****返回处理之后的新数组
 
 var newArr = arr.map(function (item, index, array) {
@@ -60,8 +59,6 @@ arr.forEach(function (item, index, array) {
 arr.forEach(function (item, index, array) {
     console.log(this);  // [1, -2, 3, 4, -5]
 }, arr);
-
-
 
 // ① forEach()无返回值，map()和filter()返回新数组，every()和some()返回布尔值
 // ② 匿名函数中this指向默认为window，可通过传第二参数来更改之
