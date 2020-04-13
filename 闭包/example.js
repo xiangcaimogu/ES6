@@ -62,6 +62,7 @@ function Person(name){
         getage:getage
     }
 }
+//闭包的应用，对函数内部的数据进行操作
  var p1 = Person('lili');
  p1.setage(20);
  console.log(p1.getage())
