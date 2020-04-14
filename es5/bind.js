@@ -1,4 +1,5 @@
 // 原生js实现bind方法
+// bind 返回的是一个新的函数，你必须调用它才会被执行
 // 方法一，只可绑定，不可传参
 Function.prototype.my_bind = function(context){
     var self = this;

@@ -3,6 +3,7 @@
 var b = new Object;
 b.name = "ss";
 b.age = 55;
+
 //对象字面量
 var c = {
     name: 'kk',
@@ -20,6 +21,7 @@ var t = {
     name: 'kk',
     age: 2
 }
+
 //工厂模式
 //能创建多个类似的对象
 //问题：没有解决对象识别问题
@@ -73,7 +75,7 @@ function Person(name,age) {
 var man = new Person("sd", 56)
 var woman = new Person("ee", 8)
 
-//组合模式(重要)
+//构造函数加原型(重要)
 function Person(name, age) {
     this.name = name;
     this.age = age;
