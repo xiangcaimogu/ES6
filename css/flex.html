@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /**************************flex****************************/
+        .parent {
+            width: 80%;
+            height: 200px;
+            display: flex;
+            /* 伸缩布局模式 */
+            flex-direction: row;
+            /* 设置排列方向为水平方向，默认的方向 */
+            /* flex-direction: column; */
+            /* 设置排列方式为竖直方向 */
+        }
+
+        .child1 {
+            height: 100%;
+            background-color: pink;
+            flex: 1;
+            /* 子盒子按照值的比例自动占比 */
+            /* width: 200px; */
+            /* 其中子盒子可以设置固定宽度，剩下的宽度，其他子盒子瓜分 */
+        }
+
+        .child2 {
+            height: 100%;
+            background-color: pink;
+            margin: 0 5px;
+            flex: 1;
+        }
+
+        .child3 {
+            height: 100%;
+            background-color: pink;
+            flex: 1;
+        }
+
+        /***********************justify-content && align-items************************/
+        .parent {
+            width: 80%;
+            height: 200px;
+            display: flex;
+            /* 伸缩布局模式 */
+            /* justify-content: flex-end; */
+            /* 让子元素靠齐右端，类似于右浮动，但是子元素的顺序不变 */
+            /* justify-content: center; */
+            /* 让子元素全部居中 */
+            justify-content: space-between;
+            /* 让子元素等分排列，之间的间隙等分 */
+            align-items: center;
+            /* 居中对齐 多用于单行*/
+            /* align-items:stretch; */
+            /* 重点：让子元素拉伸100%父级的高度，子元素不可以给高度 */
+
+        }
+
+        .child1 {
+            height: 100px;
+            background-color: pink;
+        }
+
+        .child2 {
+            height: 100px;
+            background-color: pink;
+        }
+
+        .child3 {
+            height: 100px;
+            background-color: pink;
+        }
+
+        /******************* align-content*********************/
+        .parent {
+            width: 200px;
+            height: 500px;
+            display: flex;
+            flex-flow: row wrap;
+            /* 这句话必须有，不然下面的属性不起作用 */
+            align-content: space-between;
+            /* 多行垂直居中 */
+
+        }
+
+        .child1 {
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+        }
+
+        .child2 {
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+        }
+
+        .child3 {
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+        }
+
+        /************************flex-wrap**********************/
+
+        .parent {
+            width: 400px;
+            height: 200px;
+            display: flex;
+            flex-wrap: nowrap;
+            /* 父级盒子宽度不够的时候，强制瓜分，不换行 */
+        }
+
+        .child1 {
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+        }
+
+        .child2 {
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+        }
+
+        .child3 {
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+        }
+
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

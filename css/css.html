@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /************************选择器*************************/
+        /* :first-child  伪类选择器 */
+        /* p::first-letter  伪元素选择器 选择第一个字 */
+        /* p::first-line  伪元素选择器 选择第一行 */
+        /* p::seletion  伪元素选择器 鼠标选中的文字 */
+        p::before {
+            content: '在p元素的content前面添加内容';
+            /*content为盒模型的内容*/
+            /*重点：伪元素为行内元素，也有盒模型*/
+        }
+
+        p::after {
+            content: '在p元素的content后面添加内容';
+            /*content为盒模型的内容*/
+        }
+
+        /***********************新属性*************************/
+        div {
+            visibility: hidden;
+            /* 隐藏元素，位置保留 */
+            visibility: visible;
+            /* 显示元素 */
+            display: none;
+            /* 不保留位置了 */
+
+            vertical-align: middle;
+            /* 设置行内块或行内元素中间对齐：例如：个人菜单里面的头像图片和用户名文字让他们两个中间对齐 */
+
+            word-break: break-all;
+            /*英文文字换行的时候，最后一个英文单词允许拆开换行显示*/
+            word-break: keep-all;
+            /*英文文字换行的时候，最后一个英文单词不允许拆开换行显示*/
+
+            white-space: nowrap;
+            /*强制文本不换行，只有一行*/
+
+            text-overflow: clip;
+            /*设置文本溢出不显示省略标记（...）*/
+            text-overflow: ellipsis;
+            /*设置文本溢出显示省略标记（...）*/
+            /*首先要强制一行内显示，再次和overflow:hiddle属性搭配使用*/
+
+        }
+
+        /***********************transition******************/
+        div {
+            height: 200px;
+            height: 100px;
+            transition: width 0.6s ease 0s, height 0.3s ease-in 1s;
+            /*需要过度的属性    花费的时间   运动曲线    何时开始*/
+            /*不可以放在hover里面，因为鼠标离开元素过渡效果就会中断*/
+        }
+
+        div:hover {
+            width: 600px;
+            height: 300px;
+        }
+
+        /**********************transform************************/
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* transform: translate(100px); */
+            /* 水平移动100像素 */
+            /* transform :translate(50%); */
+            /* 不是以父级宽度计算，是以自己的宽度计算，意思是以自己的宽度向右移动100px */
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            /* 重点：终极水平垂直定位居中 */
+        }
+
+        
+        /*********************盒模型**************************/
+
+        div {
+            box-sizing: border-box;
+            /* IE怪异盒模型 */
+            /* 怪异盒模型中的width指的是内容、边框、内边距总的宽度（content + border + padding） */
+            /* 怪异盒模型下盒子的大小=width（content + border + padding） + margin */
+        }
+
+        div {
+            box-sizing: content-box;
+            /* W3C标准型 */
+            /* width指的是内容区域content的宽度 */
+            /* 标准盒模型下盒子的大小 = content + border + padding + margin */
+        }
+
+
+        /**************************定位*********************/
+        div {
+            position: static;
+            /* 静态定位 对偏移是无效的 一般用来清除定位，一个原来有定位的盒子 ,不想加定位了，就添加 static*/
+            position: relative;
+            /* 相对定位 */
+            /* 相对自己 占有位置*/
+            /* 移动的位置是自己的左上角为基点（相对于自己来移动位置） */
+            /* 原来的所占位置，继续占有 */
+            position: absolute;
+            /* 绝对定位 */
+            /* 拼爹型 */
+            /*会使盒子脱离文档流，它不占有位置，所以浮动在其他元素之上的定位用绝对定位*/
+            /* 父级没有定位，以浏览器左上角为定位 */
+            /* 父级有定位，以父级为基准点对其，一层一层往上找，看哪一级父级有定位（不管是决对还是相对还固定，只要有定位） */
+
+            /*重点：子绝对定位，父相对定位的由来,父级相对定位它是占有位置的，
+            不影响后面的元素，子用绝对定位，脱离文档流，不占有位置，浮在父级元素上
+            ，最后父级有定位，绝对定位正好以父级为基准*/
+            position: fixed;
+            /* 脱离文档，和任何元素没有关系，不随滚动条滚动，只认浏览器的窗口 */
+        }
+
+        /**重点：和浮动一样，元素添加了决对定位和固定定位，脱离文档，元素都会转为行内块模式*/
+
+
+
+        /***********************浮动***************************/
+        /* 清除浮动第一种方式 */
+        .parent {
+            overflow: hidden;
+            /*hidden/auto/scroll都可以实现清除浮动*/
+        }
+
+        .son1 {
+            float: left
+        }
+
+        .son2 {
+            float: right
+        }
+
+        /* 清除浮动第二种方式 */
+        /* 父元素添加clearfix属性 */
+        .clearfix:after {
+            display: block;
+            content: ".";
+            height: 0;
+            visibility: hidden;
+            /*隐藏盒子*/
+            clear: both
+        }
+
+        /* 清除浮动第三种方式 */
+        .clearfix:after,
+        .clearfix:before {
+            content: "";
+            display: table;
+            /*这句话触发BFC BFC可以清除浮动*/
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1;
+            /*IE6不兼容:after,解决IE的兼容*/
+        }
+
+        /*重点：元素添加浮动之后，变为行内块的特性* /
+
+
+        /*********************行内元素*************************/
+        span {
+            padding: 50px;
+            margin: 50px;
+        }
+
+
+
+
+        /*行内块：  可以一行放多个，有宽度有高度，盒子大小由内容决对*/
+        /*行内元素：本身是没有高度的，设置为浮动，就可以添加高度了*/
+
+        /*块级元素添加浮动之后，具有行内块的特性*/
+        div {
+            height: 200px;
+            background-color: black;
+            float: left;
+        }
+
+        /*行内元素添加浮动之后，具有行内块的特性*/
+        span {
+            height: 200px;
+            background-color: rgb(103, 180, 231);
+            float: left;
+        }
+
+
+
+        .top {
+            text-align: center;
+            /*文字居中对齐*/
+            margin: 0 auto;
+            /*盒子居中对齐*/
+        }
+    </style>
+</head>
+
+<body>
+    <span>
+        asd
+    </span>
+</body>
+
+</html>

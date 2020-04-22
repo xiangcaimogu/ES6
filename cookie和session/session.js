@@ -90,7 +90,7 @@
 
 // 五、存储类型
 
-// cookie存储的是字符串，字符串，字符串。localStorage存储的是对象，对象，对象
+// cookie存储的是字符串，字符串，字符串。localStorage存储的是字符串
 
 
 
@@ -98,10 +98,9 @@
 // 不同浏览器无法共享localStorage或sessionStorage中的信息。
 // 相同浏览器的不同页面间可以共享相同的 localStorage（页面属于相同域名和端口），它可以在客户端本地存储数据
 // 但是不同页面或标签页间无法共享sessionStorage的信息。
-// 这里需要注意的是，页面及标 签页仅指顶级窗口，如果一个标签页包含多个iframe标签且他们属于同源页面，
-// 那么他们之间是可以共享sessionStorage的。
+// sessionStorage关闭预览器就会自动失效
 
-
+// /**********他们存储的数据类型都必须是字符串
 // JSON对象提供的parse和stringify将其他数据类型转化成字符串，再存储到storage中就可以了
 // 操作的方式：
 
