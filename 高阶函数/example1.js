@@ -16,5 +16,5 @@ type.forEach(type => {
 let obj = true
 console.log(fns.isBoolean(obj))//再次执行isType返回的函数
 
-//高阶函数：返回一个函数或者参数是一个函数
+//什么叫高阶函数：返回一个函数或者参数是一个函数
 //lodash  after
