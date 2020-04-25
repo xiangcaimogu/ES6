@@ -1,0 +1,83 @@
+// less是一门css预处理语言
+body {
+  width: 100px;
+  div {
+    font-size: 12px;
+  }
+}
+
+//变量
+// 申明变量
+// @变量名
+
+@a: 200px;
+@b: #bfa;
+@c: box;
+
+.split {
+  width: @a;
+  color: @b;
+}
+
+.@{c} {
+  width: @a;
+  background-image: url("@{c}/1.png");
+}
+
+// & 就表示直接外层的父元素
+
+.box {
+  .box2 {
+    color: red;
+  }
+  > .box3 {
+    color: @a;
+  }
+  &:hover {
+    color: orange;
+  }
+}
+
+//extend  继承
+
+.p1 {
+  height: 20px;
+  width: 20px;
+}
+.p2:extend(.p1) {
+  color: orchid;
+}
+
+//mixin 混合,一般不这么用
+.p3 {
+  .p1;
+}
+//混合函数：申明一个函数.类似与通用接口
+.inline-block() {
+  display: inline-block;
+  width: @a;
+}
+//这边调用
+.p5 {
+    .inline-block;
+}
+//真正的用法
+//也可
+.test(@w,@h,@c:red) {
+    width: @w;
+    height: @h;
+    border: 1px solid @c;
+}
+.match {
+    .test(@w:100px,@h:50px,@c:black)
+}
+
+
+// less中所有数值可以直接运算
+.map {
+    width: 100px-20px;
+    height:200px/2;
+}
+
+//import 'index.less'
+// 模块话，可以定义不同作用的less，例如有全是变量的less,有

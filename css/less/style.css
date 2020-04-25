@@ -1,0 +1,49 @@
+body {
+  width: 100px;
+}
+body div {
+  font-size: 12px;
+}
+.split {
+  width: 200px;
+  color: #bfa;
+}
+.box {
+  width: 200px;
+  background-image: url("box/1.png");
+}
+.box .box2 {
+  color: red;
+}
+.box > .box3 {
+  color: 200px;
+}
+.box:hover {
+  color: orange;
+}
+.p1,
+.p2 {
+  height: 20px;
+  width: 20px;
+}
+.p2 {
+  color: orchid;
+}
+.p3 {
+  height: 20px;
+  width: 20px;
+}
+.p5 {
+  display: inline-block;
+  width: 200px;
+}
+.match {
+  width: 100px;
+  height: 50px;
+  border: 1px solid black;
+}
+.map {
+  width: 80px;
+  height: 100px;
+}
+/*# sourceMappingURL=./style.css.map */

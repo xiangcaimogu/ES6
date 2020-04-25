@@ -7,10 +7,7 @@
     <title>Document</title>
     <style>
         /************************选择器*************************/
-        /* :first-child  伪类选择器 */
-        /* p::first-letter  伪元素选择器 选择第一个字 */
-        /* p::first-line  伪元素选择器 选择第一行 */
-        /* p::seletion  伪元素选择器 鼠标选中的文字 */
+
         p::before {
             content: '在p元素的content前面添加内容';
             /*content为盒模型的内容*/
@@ -48,6 +45,21 @@
             /*设置文本溢出显示省略标记（...）*/
             /*首先要强制一行内显示，再次和overflow:hiddle属性搭配使用*/
 
+            display: inline-block;
+            height: fill-available;
+            width: fill-available;
+            /* 自动填满高度和宽度 类似于 display:flex; align-items:stretch*/
+
+            width:fit-content;
+            /* 可以让块级元素的宽度跟着内容或者子集的宽度来自适应 */
+            margin:0 auto;
+
+            width:max-content;
+            /* 同样跟着子集或者内容的最大宽度设置自己的宽度，达到自适应 */
+
+
+            background-clip: padding-box;
+            /* 设置背景包含的区域 */
         }
 
         /***********************transition******************/
@@ -80,7 +92,7 @@
             /* 重点：终极水平垂直定位居中 */
         }
 
-        
+
         /*********************盒模型**************************/
 
         div {

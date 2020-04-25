@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* div {
+            height: 100vh;
+        } */
+
+        /* 所有浏览器默认字体大小都是16px*/
+
+
+        /* 重点：不同屏幕，我们通过设置根元素的font-size来实现不同屏幕自适应 */
+
+        /* vw,vh是屏幕视口的宽度分为100份100vm=100% */
+            /* iphone 6s   1vw=3.75px
+               iphone plus 1vw=4.14 
+               在6s中 26.6667vm==100px */
+        html {
+            font-size: 26.666667vw;
+        }
+        body {
+            font-size: 16px;
+        }
+        /* rem =  root + em 相对于根元素的font-size尺寸大小 */
+        p{
+            width: 1rem;
+            height: 1rem;
+            background-color: pink;
+            font-size: .16rem;
+        }
+        div {
+            width: 100px;
+            height:1rem
+        }
+
+
+        /* 也可以通过js获取屏幕的视口大小，设置不同的font-size:的大小， */
+        /* 3.75是以6s尺寸为设计稿， */
+        /* 如果是6s那就是375/3.75=100px 其他尺寸的屏幕js'获取再计算 */
+        /* var fontsize=document.documentElement.clientWidth / 3.75 ; */
+        /* document.documentElement.style.fontSize=fontsize+'px'; */
+
+
+
+
+ /* calc()函数支持 “+”, “-“, “*”, “/” 运算；
+        calc()函数使用标准的数学运算优先级规则；
+        calc(100vh - 10px)  表示整个浏览器窗口高度减去10px的大小
+        calc(100vw - 10px)   表示整个浏览器窗口宽度减去10px的大小 */
+        
+
+
+        @media screen and(min-width:768px) and (max-width:900px){
+            
+        }
+    </style>
+</head>
+<body>
+    <p>我是zhuchuanhuan</p>
+</body>
+</html>

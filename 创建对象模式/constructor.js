@@ -5,9 +5,11 @@ function Person(name){
 }
 var p1= new Person("jj")
 console.log(p1)
-//constructor 继承自原型对象，指向了构造函数的引用；
+//constructor 指向了构造函数的本身。
 console.log(p1.constructor === Person)
+
+
 console.log(Person.prototype)
-// {constructor: ƒ}原型对象里面包含了:constructor 和__proto__
+// {constructor: ƒ}原型对象里面包含了:constructor 和__proto__,constructor指向构造函数本身,__proto__指向上一级的原型对象
 //      constructor: ƒ Person(name)
 //      __proto__: Object

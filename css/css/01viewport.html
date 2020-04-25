@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=375px"> -->
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 375px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+    <!-- 移动端开发需要调正手机浏览器的视口大小
+    如果不调整视口，电脑的屏幕1920*1081，手机是1080*1334
+    我们电脑上查看的网页，直接放在手机上查看，字和图片整个网页会变的特别小，
+    因为手机屏幕虽然小，但是分辨率高，这就会电脑上一个980的宽度的网页，电脑看很清晰，放手机上看会变的特别小
+
+    所以要设置手机浏览器的视口，
+
+    例如我们设置视口大小 meta name="viewport"  content="width=100px";我们的div宽度为100px正好占满手机屏幕设置的视口100px,
+    而实际以6s为例，手机为750宽度。现在视口为100，手机实际为750，1:7.5,放太多，
+    我们只需要放大电脑网页2倍差不多，所以针对6s750的手机我们设置视口为375，实际750，1：2
+    其实就是电脑上375像素的东西，放在手机750像素上显示正好，手机把网页做了放大2倍处理 -->
+
+</body>
+</html>
