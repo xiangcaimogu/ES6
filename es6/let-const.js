@@ -93,13 +93,13 @@ if (true) {
 // let不允许在相同作用域内，重复声明同一个变量。
 
 // 报错
-function () {
+function a() {
   let a = 10;
   var a = 1;
 }
 
 // 报错
-function () {
+function a() {
   let a = 10;
   let a = 1;
 }
@@ -170,14 +170,14 @@ function f1() {
 
 // IIFE写法:为了使tmp成为匿名函数内部函数的局部变量，不污染全局
 (function () {
-  var tmp = ...;
-  ...
+  var tmp = 'asd';
+  // ...
 }());
 
 // 块级作用域写法
 {
-  let tmp = ...;
-  ...
+  let tmp = 'asd';
+  // ...
 }
 
 
