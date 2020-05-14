@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="search" type="text">
+    <script>
+        var search=document.querySelector('#search')
+        search.onkeyup=function(){
+            let text=this.value
+            console.log(text)
+            var script = document.createElement('script')
+            script.src=`https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${text}&cd=fn`
+            document.body.appendChild(script)
+        }
+        function fn (res){
+            console.log(res)
+        }
+    </script>
+</body>
+</html>

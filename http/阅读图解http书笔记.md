@@ -201,3 +201,98 @@ Upgrade
 
 （5）D接收到响应报文，并根据Content-Encoding:gzip判断出报文实体已经被gzip压缩过了，于是对其进行解码，最终获得资源X -->
 =================================================================================
+## 6.3.2　Connection Connection 首部字段具备如下两个作用。
++ 控制代理不再转发给服务器的首部字段
++ 管理持久连接
+
+<!-- connection:不在转发的首部字段名 -->
+GET /HTTP/1.1
+Upgrade：HTTP/1.1
+connection：Upgrade //告诉代理服务器把Upgrade这个首部字段删除在转发给服务器
+
+<!-- Connection: keep-alive , 开启HTTP持久连接，HTTP 1.1默认值 -->
+
+### HTTP持久连接的数据传输完成识别
+HTTP首部定义Connection: keep-alive后，客户端、服务端怎么知道本次传输结束呢？两部分：
+
+静态页面通过Content-Length提前告知对方数据传输大小，具体可以参考拙作HTTP Content-Length深入实践。
+动态页面不能通过Content-Length提前告知对方数据传输大小，它是分块传输（chunked），这时候就要根据chunked编码来判断，chunked编码的数据在最后有一个空chunked块，表明本次传输数据结束，HTTP头部使用Transfer-Encoding: chunked来代替Content-Length。
+
+==================================================================================
+
+### 6.3.3　Date 
+<!-- 首部字段 Date 表明创建 HTTP 报文的日期和时间。 -->
+### 6.3.5　Trailer
+<!-- 首部字段 Trailer 会事先说明在报文主体后记录了哪些首部字段。该 首部字段可应用在 HTTP/1.1 版本分块传输编码时。 -->
+HTTP/1.1 200 OK Date: Tue, 03 Jul 2012 04:40:56 GMT 
+Content-Type: text/html ... 
+Transfer-Encoding: chunked 
+Trailer: Expires 
+...(报文主体)... 0 
+Expires: Tue, 28 Sep 2004 23:59:59 GMT
+<!-- 以上用例中，指定首部字段 Trailer 的值为 Expires，在报文主体之后 （分块长度 0 之后）出现了首部字段 Expires。  -->
+
+### 6.3.7　Upgrade 
+<!-- 首部字段 Upgrade 用于检测 HTTP 协议及其他协议是否可使用更高的 版本进行通信，其参数值可以用来指定一个完全不同的通信协议 -->
+
+=============================================================================
+## 6.4　请求首部字段
+
+
+#### 6.4.1　Accept
+<!-- Accept 首部字段可通知服务器，用户代理能够处理的媒体类型及媒体 类型的相对优先级。可使用 type/subtype 这种形式，一次指定多种媒 体类型。 -->
+
+
+文本文件
+text/html, text/plain, text/css ... application/xhtml+xml, application/xml ...
+图片文件
+image/jpeg, image/gif, image/png ...
+视频文件
+video/mpeg, video/quicktime ...
+应用程序使用的二进制文件
+application/octet-stream, application/zip ... 
+
+
+#### 6.4.2　Accept-Charset
+
+<!-- Accept-Charset: iso-8859-5, unicode-1-1;q=0.8 -->
+<!-- Accept-Charset 首部字段可用来通知服务器用户代理支持的字符集及 字符集的相对优先顺序。另外，可一次性指定多种字符集。与首部字 段 Accept 相同的是可用权重 q 值来表示相对优先级 -->
+
+#### 6.4.3　Accept-Encoding
+<!-- Accept-Encoding: gzip, deflate -->
+<!-- Accept-Encoding 首部字段用来告知服务器用户代理支持的内容编码及 内容编码的优先级顺序。可一次性指定多种内容编码。
+ -->
+
+#### 6.4.5　Authorization
+
+#### 6.4.6　Expect
+#### 6.4.7　From
+
+#### 6.4.8　Host
+<!-- 虚拟主机运行在同一个 IP 上，因此使用首部字段 Host 加以 区分 -->
+<!-- Host: www.hackr.jp -->
+<!-- 首部字段 Host 会告知服务器，请求的资源所处的互联网主机名和端 口号，Host 首部字段在 HTTP/1.1 规范内是唯一一个必须被包含在请 求内的首部字段。 -->
+
+
+#### 6.4.12　If-Range
+<!-- 首部字段 If-Range 属于附带条件之一。它告知服务器若指定的 IfRange 字段值（ETag 值或者时间）和请求资源的 ETag 值或时间相一 致时，则作为范围请求处理。反之，则返回全体资源 -->
+
+#### 6.4.14　Max-Forwards
+<!-- 
+通过 TRACE 方法或 OPTIONS 方法，发送包含首部字段 MaxForwards 的请求时，该字段以十进制整数形式指定可经过的服务器最 大数目。服务器在往下一个服务器转发请求之前，Max-Forwards 的 值减 1 后重新赋值。当服务器接收到 Max-Forwards 值为 0 的请求 时，则不再进行转发，而是直接返回响应。
+使用 HTTP 协议通信时，请求可能会经过代理等多台服务器。途中， 如果代理服务器由于某些原因导致请求转发失败，客户端也就等不到 服务器返回的响应了。对此，我们无从可知。
+可以灵活使用首部字段 Max-Forwards，针对以上问题产生的原因展 开调查。由于当 Max-Forwards 字段值为 0 时，服务器就会立即返回 响应，由此我们至少可以对以那台服务器为终点的传输路径的通信状 况有所把握。 -->
+
+
+#### 6.4.189　User-Agent
+<!-- User-Agent 用于传达浏览器的种类 -->
+
+======================================================================
+
+## 6.5　响应首部字段
+#### 6.5.4　Location
+<!-- 使用首部字段 Location 可以将响应接收方引导至某个与请求 URI 位置 不同的资源。
+基本上，该字段会配合 3xx ：Redirection 的响应，提供重定向的 URI。 几乎所有的浏览器在接收到包含首部字段 Location 的响应后，都会强 制性地尝试对已提示的重定向资源的访问。 -->
+#### 6.5.6　Retry-After
+<!-- 首部字段 Retry-After 告知客户端应该在多久之后再次发送请求。主要 配合状态码 503 Service Unavailable 响应，或 3xx Redirect 响应一起使 用。
+字段值可以指定为具体的日期时间（Wed, 04 Jul 2012 06：34：24 GMT 等格式），也可以是创建响应后的秒数。  -->

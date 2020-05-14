@@ -2,16 +2,17 @@ XMLHttpRequest //对象用于和服务器交换数据。
 
 // 向服务器发送请求
 // 如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：
-
-xmlhttp.open("GET","test1.txt",true);
+let xmlhttp = new XMLHttpRequest()
+xmlhttp.open("GET", "test1.txt", true);
 xmlhttp.send();
 // 方法	描述
-open(method,url,async)	
+// open 打开连接
+open(method, url, async)
 // 规定请求的类型、URL 以及是否异步处理请求。
 method//请求的类型；GET 或 POST
 url//：文件在服务器上的位置
 // async：true（异步）或 false（同步）
-send(string)	
+send(string)
 // 将请求发送到服务器。
 // string：仅用于 POST 请求
 
@@ -26,30 +27,30 @@ send(string)
 
 // GET 请求
 // 一个简单的 GET 请求：
-xmlhttp.open("GET","demo_get.asp",true);
+xmlhttp.open("GET", "demo_get.asp", true);
 xmlhttp.send();
 // 在上面的例子中，您可能得到的是缓存的结果。
 // 为了避免这种情况，请向 URL 添加一个唯一的 ID：
-xmlhttp.open("GET","demo_get.asp?t=" + Math.random(),true);
+xmlhttp.open("GET", "demo_get.asp?t=" + Math.random(), true);
 xmlhttp.send();
 // 如果您希望通过 GET 方法发送信息，请向 URL 添加信息：
-xmlhttp.open("GET","demo_get2.asp?fname=Bill&lname=Gates",true);
+xmlhttp.open("GET", "demo_get2.asp?fname=Bill&lname=Gates", true);
 xmlhttp.send();
 
 
 POST
 // 一个简单 POST 请求：
 
-xmlhttp.open("POST","demo_post.asp",true);
+xmlhttp.open("POST", "demo_post.asp", true);
 xmlhttp.send();
 // 如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头。
 // 然后在 send() 方法中规定您希望发送的数据：
-xmlhttp.open("POST","ajax_test.asp",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.open("POST", "ajax_test.asp", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xmlhttp.send("fname=Bill&lname=Gates");
 
 // 方法	描述
-setRequestHeader(header,value)	
+setRequestHeader(header, value)
 // 向请求添加 HTTP 头。
 header: 规定头的名称
 value: 规定头的值
@@ -78,13 +79,11 @@ readyState	//存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
 
 // 当 readyState 等于 4 且状态为 200 时，表示响应已就绪：
 
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-    }
+xmlhttp.onreadystatechange = function () {
+  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
   }
+}
 // 注释：onreadystatechange 事件被触发 5 次（0 - 4），对应着 readyState 的每个变化。
 
 
@@ -92,13 +91,147 @@ xmlhttp.onreadystatechange=function()
 // 如果您的网站上存在多个 AJAX 任务，那么您应该为创建 XMLHttpRequest 对象编写一个标准的函数，并为每个 AJAX 任务调用该函数。
 // 该函数调用应该包含 URL 以及发生 onreadystatechange 事件时执行的任务（每次调用可能不尽相同）：
 
-function myFunction()
-{
-loadXMLDoc("ajax_info.txt",function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+function myFunction() {
+  loadXMLDoc("ajax_info.txt", function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
     }
   });
 }
+
+
+
+function getData() {
+  post('./data.php', { id: 8, name: 'zhu' }, function (res) {
+    console.log(res)
+  }, true)
+}
+
+function post(url, query, callback, isJson) {
+  let str=''
+  if (query) {
+    for (let i in query) {
+      str += `${key}=${query[key]}&`
+    }
+    str = str.slice(0, -1)
+  }
+  // url:请求地址
+  // query：object
+  // callback:function 成功之后的回调
+  var xhr = new XMLHttpRequest()
+  // 如果有参数，先把参数拼接在url上
+  xhr.open('post', url)
+  xhr.send(str)
+  xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      let res = isJson ? JSON.parse(xhr.responseText) : xhr.responseText
+      callback(res)
+    }
+  }
+}
+
+
+let util = {
+  post: function (url, query, callback, isJson) {
+    let str=''
+    if (query) {
+      for (let key in query) {
+        str += `${key}=${query[key]}&`
+      }
+      str = str.slice(0, -1)
+    }
+    // url:请求地址
+    // query：object
+    // callback:function 成功之后的回调
+    var xhr = new XMLHttpRequest()
+    // 如果有参数，先把参数拼接在url上
+    xhr.open('post', url)
+    xhr.send(str)
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        let res = isJson ? JSON.parse(xhr.responseText) : xhr.responseText
+        callback(res)
+      }
+    }
+  },
+  get: function () {
+
+  },
+  ajax(params){
+    var xhr= new XMLHttpRequest()
+    if(params.method.toLowerCase()=='get'){
+      let url=params.url
+      if (params.query) {
+        url+='?'
+        for (let key in params.query) {
+          url += `${key}=${query[key]}&`
+        }
+        url = url.slice(0, -1)
+      }
+    xhr.open('get',url)
+    xhr.send()
+    }else {
+      let str=''
+    if (params.query) {
+      for (let key in params.query) {
+        str += `${key}=${params.query[key]}&`
+      }
+      str = str.slice(0, -1)
+    }
+    xhr.open('post',url)
+    xhr.setRequestHeader('Content-Type','"application/x-www-form-urlencoded"')
+    xhr.send(str)
+    }
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        let res = params.isJson ? JSON.parse(xhr.responseText) : xhr.responseText
+        params.callback(res)
+      }
+    }
+  },
+  fetch(url,query,isJson) {
+    return new Promise((reslove,reject)=>{
+      var xhr= new XMLHttpRequest()
+    if(method.toLowerCase()=='get'){
+      if (query) {
+        url+='?'
+        for (let key in query) {
+          url += `${key}=${query[key]}&`
+        }
+        url = url.slice(0, -1)
+      }
+    xhr.open('get',url)
+    xhr.send()
+    }else {
+      let str=''
+    if (query) {
+      for (let key in query) {
+        str += `${key}=${query[key]}&`
+      }
+      str = str.slice(0, -1)
+    }
+    xhr.open('post',url)
+    xhr.setRequestHeader('Content-Type','"application/x-www-form-urlencoded"')
+    xhr.send(str)
+    }
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        let res = isJson ? JSON.parse(xhr.responseText) : xhr.responseText
+        reslove(res)
+      }
+    }
+    })
+  }
+}
+util.ajax({
+  method:'get',
+  url:'./data.php',
+  params:{name:'zhu',age:'89'},
+  callback:(res)=>{
+    console.log(res)
+  },
+  isJson:true
+})
+util.fetch('./data.php',{age:8},true).then((res)=>{
+  console.log(res)
+})
