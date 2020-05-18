@@ -65,7 +65,7 @@ sort()	//对数组的元素进行排序。
 
 
 splice()	//从数组中添加或删除元素。
-const months = ['Jan', 'March', 'April', 'June'];
+let months = ['Jan', 'March', 'April', 'June'];
 months.splice(1, 0, 'Feb');
 console.log(months);
 // expected output: Array ["Jan", "Feb", "March", "April", "June"]
