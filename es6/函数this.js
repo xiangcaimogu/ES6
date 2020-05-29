@@ -89,7 +89,7 @@ function fn(){
 var a = new fn();
 //new的作用 
 // 创建一个a的实例 
-// 改变函数fn()this的指向
+// 改变函数fn()this的指向,指向实例
 //fn.apply(a)
 console.log(a.num); //1
 

@@ -10,6 +10,8 @@ String.fromCharCode()	//将 Unicode 编码转为字符。
 
 
 indexOf()	//返回某个指定的字符串值在字符串中首次出现的位置。
+var str="Hello world, welcome to the universe.";
+var n=str.indexOf("e",5);//14
 lastIndexOf()	//从后向前搜索字符串。
 
 

@@ -22,3 +22,13 @@ console.log(new Date(2020,6,0)) //这里里面的6代表的是7月份，相当�
 console.log(new Date(2020,4).getDay())
 
 // getTime()	返回 1970 年 1 月 1 日至今的毫秒数
+
+
+
+//日期格式化方法
+// toLocaleDateString()	根据本地时间格式，把 Date 对象的日期部分转换为字符串。
+// toLocaleTimeString()	根据本地时间格式，把 Date 对象的时间部分转换为字符串。
+// toLocaleString()	据本地时间格式，把 Date 对象转换为字符串。
+var d=new Date();
+var n=d.toLocaleDateString();
+console.log(n)

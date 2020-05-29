@@ -1,33 +1,33 @@
-# TCP/IP 的分成管理
+# TCP / IP 的分成管理
 
 ## 分为以下 4 层：应用层、传输层、网络层和数据链路层
 ### 应用层：
 * 应用层决定了向用户提供应用服务时通信的活动。
-* TCP/IP 协议族内预存了各类通用的应用服务。比如，FTP（File Transfer Protocol，文件传输协议）和 DNS（Domain Name System，域 名系统）服务就是其中两类
+* TCP / IP 协议族内预存了各类通用的应用服务。比如，FTP（File Transfer Protocol，文件传输协议）和 DNS（Domain Name System，域 名系统）服务就是其中两类
 ### 传输层：
 * 对上层应用层，提供处于网络连接中的两台计算机之间的数据 传输。
 * 在传输层有两个性质不同的协议：TCP（Transmission Control Protocol，传输控制协议）和 UDP（User Data Protocol，用户数据报 协议
 ### 网络层：
 * 网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数 据单位。该层规定了通过怎样的路径（所谓的传输路线）到达对方计 算机，并把数据包传送给对方
-* 与对方计算机之间通过多台计算机或网络设备进行传输时，网络层所 起的作用就是在众多的选项内选择一条传输路线。
+    * 与对方计算机之间通过多台计算机或网络设备进行传输时，网络层所 起的作用就是在众多的选项内选择一条传输路线。
 ### 链路层
-* 用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱 动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等 物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在 链路层的作用范围之内
+    * 用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱 动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等 物理可见部分（还包括连接器等一切传输媒介）。硬件上的范畴均在 链路层的作用范围之内
 
 ### 我们用 HTTP 举例来说明
-* 首先作为发送端的客户端在应用层 （HTTP 协议）发出一个想看某个 Web 页面的 HTTP 请求。 
+    * 首先作为发送端的客户端在应用层 （HTTP 协议）发出一个想看某个 Web 页面的 HTTP 请求。 
 * 接着，为了传输方便，在传输层（TCP 协议）把从应用层处收到的数 据（HTTP 请求报文）进行分割，并在各个报文上打上标记序号及端 口号后转发给网络层。
 * 在网络层（IP 协议），增加作为通信目的地的 MAC 地址后转发给链 路层。这样一来，发往网络的通信请求就准备齐全了。
 * 接收端的服务器在链路层接收到数据，按序往上层发送，一直到应用 层。当传输到应用层，才能算真正接收到由客户端发送过来的 HTTP 请求。
 
 
 
-#### 确保可靠性的 TCP 协议 
-* 为了准确无误地将数据送达目标处，TCP 协议采用了三次握手 （three-way handshaking）策略。用 TCP 协议把数据包送出去后，TCP 不会对传送后的情况置之不理，它一定会向对方确认是否成功送达。
+#### 确保可靠性的 TCP 协议
+    * 为了准确无误地将数据送达目标处，TCP 协议采用了三次握手 （three - way handshaking）策略。用 TCP 协议把数据包送出去后，TCP 不会对传送后的情况置之不理，它一定会向对方确认是否成功送达。
 * 握手过程中使用了 TCP 的标志（flag） —— SYN（synchronize） 和 ACK（acknowledgement）。 
-* 发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后， 回传一个带有 SYN/ACK 标志的数据包以示传达确认信息。最后，发 送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 
+* 发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后， 回传一个带有 SYN / ACK 标志的数据包以示传达确认信息。最后，发 送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 
 
 #### 　负责域名解析的 DNS 服务
-* DNS（Domain Name System）服务是和 HTTP 协议一样位于应用层的 协议。它提供域名到 IP 地址之间的解析服务。 计算机既可以被赋予 IP 地址，也可以被赋予主机名和域名。比如 www.hackr.jp
+    * DNS（Domain Name System）服务是和 HTTP 协议一样位于应用层的 协议。它提供域名到 IP 地址之间的解析服务。 计算机既可以被赋予 IP 地址，也可以被赋予主机名和域名。比如 www.hackr.jp
 
 =================================
 
@@ -53,7 +53,7 @@
 * 发送邮件时，我们可以在邮件里写入文字并添加多份附件。这是因为 采用了 MIME（Multipurpose Internet Mail Extensions，多用途因特网邮 件扩展）机制，它允许邮件处理文本、图片、视频等多个不同类型的数据。例如，图片等二进制数据以 ASCII 码字符串编码的方式指明， 就是利用 MIME 来描述标记数据类型。而在 MIME 扩展中会使用一 种称为多部分对象集合（Multipart）的方法，来容纳多份不同类型的 数据。
 * 相应地，HTTP 协议中也采纳了多部分对象集合，发送的一份报文主 体内可含有多类型实体。通常是在图片或文本文件等上传时使用
 ##### Content-Type: multipart/form-data
-* 在 Web 表单*文件*上传时使用。 
+* 在 Web 表单*文件*上传时使用。
 
 ##### enctype
 发送 POST 请求时候，表单 属性 enctype 共有二个值可选，这个属性管理的是表单的 MIME 编码：
@@ -63,11 +63,11 @@
 
 
 ### 3.6　内容协商返回最合适的内容
-+ Accept 
++ Accept
 + Accept-Charset
-+ Accept-Encoding 
-+ Accept-Language 
-+ Content-Language 
++ Accept-Encoding
++ Accept-Language
++ Content-Language
 
 # 第 4 章　返回结果的 HTTP 状态 码
 
@@ -101,66 +101,66 @@
 ## 通用首部字段
 Cache-Control       控制缓存的行为
 Connection          逐跳首部、连接的管理
-Date                创建报文的日期时间 
+Date                创建报文的日期时间
 Pragma              报文指令
-Trailer             报文末端的首部一览 
-Transfer-Encoding   指定报文主体的传输编码方式 
+Trailer             报文末端的首部一览
+Transfer-Encoding   指定报文主体的传输编码方式
 Upgrade             升级为其他协议
 Via                 代理服务器的相关信息
 Warning             错误通知
 
 
 ## 请求首部字段
-Accept              用户代理可处理的媒体类型 
-Accept-Charset      优先的字符集 
-Accept-Encoding     优先的内容编码 
-Accept-Language     优先的语言（自然语言） 
-Authorization       Web认证信息 
-Expect              期待服务器的特定行为 
-From                用户的电子邮箱地址 
-Host                请求资源所在服务器 
-If-Match            比较实体标记（ETag） 
-If-Modified-Since   比较资源的更新时间 
-If-None-Match       比较实体标记（与 If-Match 相反） 
-If-Range            资源未更新时发送实体Byte 的范围请求 
-If-Unmodified-Since 比较资源的更新时间（与If-Modified-Since相反） 
-Max-Forwards        最大传输逐跳数 
-Proxy-Authorization 代理服务器要求客户端的认证信息 Range 实体的字节范围请求 
-Referer             对请求中 URI 的原始获取方 
-TE                  传输编码的优先级 
+Accept              用户代理可处理的媒体类型
+Accept-Charset      优先的字符集
+Accept-Encoding     优先的内容编码
+Accept-Language     优先的语言（自然语言）
+Authorization       Web认证信息
+Expect              期待服务器的特定行为
+From                用户的电子邮箱地址
+Host                请求资源所在服务器
+If-Match            比较实体标记（ETag）
+If-Modified-Since   比较资源的更新时间
+If-None-Match       比较实体标记（与 If-Match 相反）
+If-Range            资源未更新时发送实体Byte 的范围请求
+If-Unmodified-Since 比较资源的更新时间（与If-Modified-Since相反）
+Max-Forwards        最大传输逐跳数
+Proxy-Authorization 代理服务器要求客户端的认证信息 Range 实体的字节范围请求
+Referer             对请求中 URI 的原始获取方
+TE                  传输编码的优先级
 User-Agent HTTP     客户端程序的信息
 
 
 ## 响应首部字段
 Accept-Ranges       是否接受字节范围请求
-Age                 推算资源创建经过时间 
-ETag                资源的匹配信息 
-Location            令客户端重定向至指定URI 
-Proxy-Authenticate  代理服务器对客户端的认证信息 
-Retry-After         对再次发起请求的时机要求 
-Server              HTTP服务器的安装信息 
-Vary                代理服务器缓存的管理信息 
+Age                 推算资源创建经过时间
+ETag                资源的匹配信息
+Location            令客户端重定向至指定URI
+Proxy-Authenticate  代理服务器对客户端的认证信息
+Retry-After         对再次发起请求的时机要求
+Server              HTTP服务器的安装信息
+Vary                代理服务器缓存的管理信息
 WWW-Authenticate    服务器对客户端的认证信息
 
 
 ## 实体首部字段
-Allow               资源可支持的HTTP方法 
-Content-Encoding    实体主体适用的编码方式 
-Content-Language    实体主体的自然语言 
-Content-Length      实体主体的大小（单位：字节） 
-Content-Location    替代对应资源的URI 
-Content-MD5         实体主体的报文摘要 
-Content-Range       实体主体的位置范围 
-Content-Type        实体主体的媒体类型 
-Expires             实体主体过期的日期时间 
+Allow               资源可支持的HTTP方法
+Content-Encoding    实体主体适用的编码方式
+Content-Language    实体主体的自然语言
+Content-Length      实体主体的大小（单位：字节）
+Content-Location    替代对应资源的URI
+Content-MD5         实体主体的报文摘要
+Content-Range       实体主体的位置范围
+Content-Type        实体主体的媒体类型
+Expires             实体主体过期的日期时间
 Last-Modified       资源的最后修改日期时间
 
-## 6.2.6　End-to-end 首部和 Hop-by-hop 首部 
+## 6.2.6　End-to-end 首部和 Hop-by-hop 首部
 ### 端到端首部（End-to-end Header）
 * 分在此类别中的首部会转发给请求 / 响应对应的最终接收目标，中间有缓存服务器或代理服务器，且必须保存在由缓存生成的响应中，另外规定它必须被转发，直到最终接受目标。
 
 ### 逐跳首部（Hop-by-hop Header）
-* 分在此类别中的首部只对单次转发有效，会因通过缓存或代理而不再转发。HTTP/1.1 和之后版本中，如果要使用 hop-by-hop 首部，需提 供 Connection 首部字段 
+* 分在此类别中的首部只对单次转发有效，会因通过缓存或代理而不再转发。HTTP/1.1 和之后版本中，如果要使用 hop-by-hop 首部，需提 供 Connection 首部字段
 
 * 下面列举了 HTTP/1.1 中的逐跳首部字段。除这 8 个首部字段之外， 其他所有字段都属于端到端首部。
 Connection
@@ -220,19 +220,19 @@ HTTP首部定义Connection: keep-alive后，客户端、服务端怎么知道本
 
 ==================================================================================
 
-### 6.3.3　Date 
+### 6.3.3　Date
 <!-- 首部字段 Date 表明创建 HTTP 报文的日期和时间。 -->
 ### 6.3.5　Trailer
 <!-- 首部字段 Trailer 会事先说明在报文主体后记录了哪些首部字段。该 首部字段可应用在 HTTP/1.1 版本分块传输编码时。 -->
-HTTP/1.1 200 OK Date: Tue, 03 Jul 2012 04:40:56 GMT 
-Content-Type: text/html ... 
-Transfer-Encoding: chunked 
-Trailer: Expires 
-...(报文主体)... 0 
+HTTP/1.1 200 OK Date: Tue, 03 Jul 2012 04:40:56 GMT
+Content-Type: text/html ...
+Transfer-Encoding: chunked
+Trailer: Expires
+...(报文主体)... 0
 Expires: Tue, 28 Sep 2004 23:59:59 GMT
 <!-- 以上用例中，指定首部字段 Trailer 的值为 Expires，在报文主体之后 （分块长度 0 之后）出现了首部字段 Expires。  -->
 
-### 6.3.7　Upgrade 
+### 6.3.7　Upgrade
 <!-- 首部字段 Upgrade 用于检测 HTTP 协议及其他协议是否可使用更高的 版本进行通信，其参数值可以用来指定一个完全不同的通信协议 -->
 
 =============================================================================
@@ -250,7 +250,7 @@ image/jpeg, image/gif, image/png ...
 视频文件
 video/mpeg, video/quicktime ...
 应用程序使用的二进制文件
-application/octet-stream, application/zip ... 
+application/octet-stream, application/zip ...
 
 
 #### 6.4.2　Accept-Charset
@@ -278,7 +278,7 @@ application/octet-stream, application/zip ...
 <!-- 首部字段 If-Range 属于附带条件之一。它告知服务器若指定的 IfRange 字段值（ETag 值或者时间）和请求资源的 ETag 值或时间相一 致时，则作为范围请求处理。反之，则返回全体资源 -->
 
 #### 6.4.14　Max-Forwards
-<!-- 
+<!--
 通过 TRACE 方法或 OPTIONS 方法，发送包含首部字段 MaxForwards 的请求时，该字段以十进制整数形式指定可经过的服务器最 大数目。服务器在往下一个服务器转发请求之前，Max-Forwards 的 值减 1 后重新赋值。当服务器接收到 Max-Forwards 值为 0 的请求 时，则不再进行转发，而是直接返回响应。
 使用 HTTP 协议通信时，请求可能会经过代理等多台服务器。途中， 如果代理服务器由于某些原因导致请求转发失败，客户端也就等不到 服务器返回的响应了。对此，我们无从可知。
 可以灵活使用首部字段 Max-Forwards，针对以上问题产生的原因展 开调查。由于当 Max-Forwards 字段值为 0 时，服务器就会立即返回 响应，由此我们至少可以对以那台服务器为终点的传输路径的通信状 况有所把握。 -->
@@ -309,7 +309,7 @@ application/octet-stream, application/zip ...
 <!-- 在采用 SSL 后，HTTP 就拥有了 HTTPS 的加密、证书和完整性保护 这些功能。 -->
 <!-- SSL 是独立于 HTTP 的协议，所以不光是 HTTP 协议，其他运行在应 用层的 SMTP 和 Telnet 等协议均可配合 SSL 协议使用。可以说 SSL 是 当今世界上应用最为广泛的网络安全技术。
  -->
- ## 7.2.3　相互交换密钥的公开密钥加密技术 
+ ## 7.2.3　相互交换密钥的公开密钥加密技术
  * 在对 SSL 进行讲解之前，我们先来了解一下加密方法。SSL 采用一种 叫做公开密钥加密（Public-key cryptography）的加密处理方式。
 近代的加密方法中加密算法是公开的，而密钥却是保密的。通过这种 方式得以保持加密方法的安全性。
 加密和解密都会用到密钥。没有密钥就无法对密码解密，反过来说， 任何人只要持有密钥就能解密了。如果密钥被攻击者获得，那加密也 就失去了意义。
@@ -321,7 +321,7 @@ application/octet-stream, application/zip ...
 * 公开密钥加密使用一对非对称的密钥。一把叫做私有密钥 （private key），另一把叫做公开密钥（public key）。顾名思 义，私有密钥不能让其他任何人知道，而公开密钥则可以随意发 布，任何人都可以获得。
 * 使用公开密钥加密方式，发送密文的一方使用对方的公开密钥进 行加密处理，对方收到被加密的信息后，再使用自己的私有密钥 进行解密。利用这种方式，不需要发送用来解密的私有密钥，也 不必担心密钥被攻击者窃听而盗走
 * 另外，要想根据密文和公开密钥，恢复到信息原文是异常困难 的，因为解密过程就是在对离散对数进行求值，这并非轻而易举 就能办到。退一步讲，如果能对一个非常大的整数做到快速地因 式分解，那么密码破解还是存在希望的。但就目前的技术来看是 不太现实的。
-### HTTPS 采用混合加密机制 
+### HTTPS 采用混合加密机制
 * HTTPS 采用共享密钥加密和公开密钥加密两者并用的混合加密 机制。若密钥能够实现安全交换，那么有可能会考虑仅使用公开 密钥加密来通信。但是公开密钥加密与共享密钥加密相比，其处 理速度要慢。
 * 所以应充分利用两者各自的优势，将多种方法组合起来用于通 信。在交换密钥环节使用公开密钥加密方式，之后的建立通信交 换报文阶段则使用共享密钥加密方式
 
@@ -339,3 +339,22 @@ application/octet-stream, application/zip ...
  一，认证服务器的公开密钥的是真实有效的数字证书认证机构。
  二，服务器的公开密钥是值得信赖的。
 此处认证机关的公开密钥必须安全地转交给客户端。使用通信方式 时，如何安全转交是一件很困难的事，因此，多数浏览器开发商发布 版本时，会事先在内部植入常用认证机关的公开密钥
+
+HTTPS 通信
+* 步骤 1： 客户端通过发送 Client Hello 报文开始 SSL 通信。报文中包 含客户端支持的 SSL 的指定版本、加密组件（Cipher Suite）列表（所 使用的加密算法及密钥长度等）。
+* 步骤 2： 服务器可进行 SSL 通信时，会以 Server Hello 报文作为应
+答。和客户端一样，在报文中包含 SSL 版本以及加密组件。服务器的 加密组件内容是从接收到的客户端加密组件内筛选出来的。
+* 步骤 3： 之后服务器发送 Certificate 报文。报文中包含公开密钥证 书。
+* 步骤 4： 最后服务器发送 Server Hello Done 报文通知客户端，最初阶 段的 SSL 握手协商部分结束。
+* 步骤 5： SSL 第一次握手结束之后，客户端以 Client Key Exchange 报 文作为回应。报文中包含通信加密中使用的一种被称为 Pre-master secret 的随机密码串。该报文已用步骤 3 中的公开密钥进行加密。
+* 步骤 6： 接着客户端继续发送 Change Cipher Spec 报文。该报文会提 示服务器，在此报文之后的通信会采用 Pre-master secret 密钥加密。
+* 步骤 7： 客户端发送 Finished 报文。该报文包含连接至今全部报文的 整体校验值。这次握手协商是否能够成功，要以服务器是否能够正确 解密该报文作为判定标准。
+* 步骤 8： 服务器同样发送 Change Cipher Spec 报文。
+* 步骤 9： 服务器同样发送 Finished 报文。
+* 步骤 10： 服务器和客户端的 Finished 报文交换完毕之后，SSL 连接 就算建立完成。当然，通信会受到 SSL 的保护。从此处开始进行应用 层协议的通信，即发送 HTTP 请求。
+* 步骤 11： 应用层协议通信，即发送 HTTP 响应。
+* 步骤 12： 最后由客户端断开连接。断开连接时，发送 close_notify 报 文。上图做了一些省略，这步之后再发送 TCP FIN 报文来关闭与 TCP 的通信。
+在以上流程中，应用层发送数据时会附加一种叫做 MAC（Message Authentication Code）的报文摘要。MAC 能够查知报文是否遭到篡 改，从而保护报文的完整性。
+下面是对整个流程的图解。图中说明了从仅使用服务器端的公开密钥 证书（服务器证书）建立 HTTPS 通信的整个过程。
+
+
