@@ -42,5 +42,25 @@ function colorRandom() {
     let c = geRandom(0, 255)
     return `rgb(${a},${b},${c})`
 }
-var rc=colorRandom()
-document.body.style.background=rc
+var rc = colorRandom()
+document.body.style.background = rc
+
+
+//url的查询字符串变成json
+
+function getArgs(){
+    http://192.168.106.4:8080/?user=asd&pwd=asd
+    var args = {
+        // user:'asd',
+        // pwd:'asd'
+    }
+    var qs = location.search.length > 0 ? location.search.slice(1) : ''
+    var item = qs.length > 0 ? qs.split('&') : ''
+    let name=null
+    for (let i of item) {
+        let arr = i.split('=')
+        name = arr[0]
+        args[name] = arr[1]
+    }
+    return args
+}

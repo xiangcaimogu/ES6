@@ -18,6 +18,8 @@ git
 webpack
 ES6 Proxy
 html5
+节流，防抖
+arguments
 浏览器缓存etag
 垃圾回收机制
 
