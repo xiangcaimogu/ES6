@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>
+        {{aa}}
+        </h1>
+        <p>
+            {{b}}
+        </p>
+        <p>
+            {{http}}
+        </p>
+        <button @click="b++">add</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data(){
+            return {
+                b:8,
+                aa:'http-calche'
+            }
+        },
+        watch:{
+            b(n,old){
+                console.log('watch')
+            }
+        }
+    ,
+    computed:{
+        http(){
+            console.log('computed')
+            return this.aa+'control'
+        }
+    }
+    })
+</script>
+</html>

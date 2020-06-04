@@ -1,8 +1,8 @@
 function debounce(func, wait) {
     let timeout
-    console.log('11')
-    return function () {
+    return function (e) {
         let vm = this;
+        console.log(e)
         let arg=arguments
         console.log(arg)
         clearTimeout(timeout)
