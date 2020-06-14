@@ -26,12 +26,12 @@
 		// };
 
 		// let obj2 = {};
-		// for (let key in obj) {
+		// for (let key in obj) { //for in 遍历会遍历obj对象原型链prototype上的属性，所以hasOwnProperty判断是不是自有属性，严谨的方式Object.prototype.hasOwnproperty.call(obj,value)
 		// 	if (!obj.hasOwnProperty(key)) break;
 		// 	obj2[key] = obj[key];
 		// }
 
-		// let obj2 = JSON.parse(JSON.stringify(obj)); //=>弊端?
+		// let obj2 = JSON.parse(JSON.stringify(obj)); //=>弊端:obj里存在函数，日期，或者正则，都会出现问题
 
 		// console.log(obj, obj2);
 
