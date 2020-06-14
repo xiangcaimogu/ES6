@@ -48,6 +48,8 @@ try {
 console.log('asaa')
 
 // 抛出错误：throw error
+// throw不能return  return throw这样的写法是错误的
+
 function something(a) {
     if (typeof (a) == 'number') {
         console.log('ok')
