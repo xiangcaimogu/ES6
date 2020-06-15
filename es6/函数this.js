@@ -214,3 +214,56 @@ getAge.apply(xiaoming, []); // 25, this指向xiaoming, 参数为空
 // 比如调用Math.max(3, 5, 4)，分别用apply()和call()实现如下：
 Math.max.apply(null, [3, 5, 4]); // 5
 Math.max.call(null, 3, 5, 4); // 5
+
+
+
+   //this
+    // 箭头函数看上去是匿名函数的一种简写，但实际上，箭头函数和匿名函数有个明显的区别：箭头函数内部的this是词法作用域，由上下文确定。
+    // 回顾前面的例子，由于JavaScript函数对this绑定的错误处理，下面的例子无法得到预期结果：
+
+    var obj = {
+        birth: 1990,
+        getAge: function () {
+            var b = this.birth; // 1990
+            var fn = function () {
+                return new Date().getFullYear() - this.birth; // this指向window或undefined
+            };
+            return fn();
+        }
+    };
+
+
+    // 现在，箭头函数完全修复了this的指向，箭头函数本身没有this，this总是借用上级function的this
+    // 箭头本身没有this，借用this，不能用作构造函数
+    var obj = {
+        birth: 1990,
+        name: '小妖精',
+        getAge: function () {
+            var b = this.birth; // 1990
+            console.log(this)
+            var fn = () => new Date().getFullYear() - this.birth;
+            return fn();
+        },
+        getName: () => {
+            console.log(this)
+            var fn = () => this.name;
+            return fn();
+        }
+    };
+    console.log(obj.getAge())
+    console.log(obj.getName())
+
+    
+    // 如果使用箭头函数，以前的那种hack写法：
+    var that = this;
+    // 就不再需要了。
+    // 由于this在箭头函数中已经按照词法作用域绑定了，所以，用call()或者apply()调用箭头函数时，无法对this进行绑定，即传入的第一个参数被忽略：
+    var obj = {
+        birth: 1990,
+        getAge: function (year) {
+            var b = this.birth; // 1990
+            var fn = (y) => y - this.birth; // this.birth仍是1990
+            return fn.call({ birth: 2000 }, year);
+        }
+    };
+    console.log(obj.getAge(2015))

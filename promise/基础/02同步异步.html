@@ -29,12 +29,21 @@ setTimeout(function () {
 })
 
 console.log("1111")
+
+
 var arr=[1,2,3,4]
     //回调函数不一定异步
 arr.forEach(function (v,i) {
     console.log(v)
 })
 console.log("2222")
+
+//同步回调
+// 理解：立即执行，完全执行完了才结束，不会放入回调队列中
+// 例子：数组遍历相关的回调函数/Promise的excutor函数
+//异步回调
+// 理解：不会立即执行，会放入回调队列中将来执行
+// 例子：定时器回调(放在宏任务中)，ajax回调/Promise的成功/失败的回调
 </script>
 </body>
 </html>
