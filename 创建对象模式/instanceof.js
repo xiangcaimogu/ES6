@@ -1,5 +1,9 @@
 //a instanceof A
 //instanceof运算符用来判断一个构造函数的prototype属性所指向的对象是否存在另外一个要检测对象的原型链上
+let arr=new Array()
+console.log(arr instanceof Object) //true
+console.log(arr instanceof Array) //true
+
 
 function Person(name){
     if(this instanceof Person){
