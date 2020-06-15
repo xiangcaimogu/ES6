@@ -32,8 +32,8 @@
         })
 
     })
-    p.then(//.then是同步执行
-        (value) => { console.log(value) } //回调函数 才是异步执行
+    p.then(//.then()是同步执行
+        (value) => { console.log(value) } //传进去的回调函数会被保存然后异步执行
     )
     console.log("bb")
     // asd
