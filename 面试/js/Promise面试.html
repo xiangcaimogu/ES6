@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        new Promise(resolve=>{
+            console.log('1')
+            resolve()
+        }).then(value=>{
+            new Promise(resolve=>{ // 1.new Promise 没有return的情况下，
+                console.log('2')
+                resolve() // 2.resolve执行console.log('3')就立马执行 
+            }).then(value=>{
+                console.log('3')
+            }).then(value=>{
+                console.log('4') //3.then是同步执行，回调是异步执行
+            }).then(value=>{
+                console.log('5')//4.所以4和5这两个then先执行完，8就执行，但是4和5里面的回调要等3打印出来，才会添加到微任务
+            })
+        }).then(value=>{
+            console.log('8')
+        })
+        new Promise(resolve=>{
+            console.log('6')
+            resolve()
+        }).then(value=>{
+            console.log('7')
+        })
+
+        // 1 6 同步
+        // 2 7 3 8 4 5
+
+        new Promise(resolve=>{
+            console.log('1')
+            resolve()
+        }).then(value=>{
+            return new Promise(resolve=>{ //有 return
+                console.log('2')
+                resolve()
+            }).then(value=>{
+                console.log('3')
+            }).then(value=>{
+                console.log('4')
+            }).then(value=>{
+                console.log('5')
+            })
+        }).then(value=>{
+            console.log('8')
+        })
+        new Promise(resolve=>{
+            console.log('6')
+            resolve()
+        }).then(value=>{
+            console.log('7')
+        })
+        // 1 6 同步
+        // 2 7 3 4 5 8
+    </script>
+</body>
+</html>
