@@ -47,7 +47,6 @@ document.body.style.background = rc
 
 
 //url的查询字符串变成json
-
 function getArgs(){
     http://192.168.106.4:8080/?user=asd&pwd=asd
     var args = {
@@ -64,3 +63,75 @@ function getArgs(){
     }
     return args
 }
+
+
+//数组去重
+//  第一种方法new Set()
+let arr = [1,1,5,8,6,6,7,8,7,7,8]
+let array = Array.from(new Set(arr))
+ // 第二种方法
+let ids=[]
+arr.forEach((item)=>{
+    if (!ids.includes(item)){
+        ids.push(item)
+    }
+})
+console.log(ids)
+
+
+//冒泡排序
+let nums=[45,8,456,2,5,96,63,73,59,84,34,9,6]
+for(let a=nums.length;a>0;a--){
+    for(let i=0;i<a;i++){
+        if(nums[i]>nums[i+1]){
+            let q =nums[i]
+            nums[i]=nums[i+1]
+            nums[i+1]=q    
+        }
+    }
+}
+// for(let a=0;a<nums.length;a++){
+//     for(let i=0;i<nums.length-a;i++){
+//         if(nums[i]>nums[i+1]){
+//             let q =nums[i]
+//             nums[i]=nums[i+1]
+//             nums[i+1]=q    
+//         }
+//     }
+// }
+
+//快速排序
+nums.sort((a,b)=>{return a-b})
+console.log(nums)
+
+//数组降维 数组的扁平化
+let arr = [
+    [1, 2, 2],
+    [3, 4, 5, 5],
+    [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10
+];
+// 第一种方法，es6
+arr=arr.flat(Infinity);
+// 第二种
+let array=arr.toString().split(',').map(i=>Number(i))
+// 第三种
+// 递归
+function flat(arr){
+    let n=[]
+    function fn(arr){
+        for (let i=0;i<arr.length;i++){
+            if (Array.isArray(arr[i])){
+                fn(arr[i])
+            }else {
+                n.push(arr[i])
+            }
+        }
+    }
+    fn(arr)
+    return n
+}
+
+let b=flat(arr)
+console.log(b)
+
+

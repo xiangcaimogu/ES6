@@ -8,6 +8,7 @@ function mul(n) {
 }
 
 //实现斐波拉契数列
+// 1 1 2 3 5 8 13 21...
 //fb(n) == fb(n - 1) + fb(n - 2)
 function fb(n) {
     if (n == 1 || n == 2) {
