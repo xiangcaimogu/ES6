@@ -22,6 +22,16 @@ Math.random()*(max-min)+min
 Math.floor(Math.random()*(max-min)+min)
 
 
+Math.abs() 
+// 函数返回指定数字 “x“ 的绝对值
+Math.abs('-1');     // 1
+Math.abs(-2);       // 2
+Math.abs(null);     // 0
+Math.abs("string"); // NaN
+Math.abs();  //NaN
+
+
+
 
 
 // 随机验证码
