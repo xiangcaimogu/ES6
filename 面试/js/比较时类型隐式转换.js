@@ -2,9 +2,11 @@
 console.log(null == undefined) //true
 console.log(NaN==NaN) // false
 // == 两个等号符进行比较时都会先转为数字
+
 console.log([10] == 10) //true
 [10].toString() // '10'
 Number("10") //10
+
 console.log(1 == true)
 console.log(0 == false)
 

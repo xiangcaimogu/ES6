@@ -135,3 +135,11 @@ let b=flat(arr)
 console.log(b)
 
 
+
+// 字符串大小写转换
+str.replace('/[a-zA-Z]/',value=>{
+    return value.toUpperCase()==value ? value.toLowerCase() : value.toUpperCase()
+})
+
+
+//
