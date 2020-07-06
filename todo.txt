@@ -55,6 +55,7 @@ vue-cli 需要能够修改脚手架的webpack配置项
 
 webpack
 git
+npm
 node
 canvas
 

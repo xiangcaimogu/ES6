@@ -19,11 +19,11 @@ a.toString(); // "as,df,ui,1,2,3"
 // 为了简单起见，我们来看看什么是不安全的JSON 值。undefined、function、symbol （ES6+）和包含循环引用（对象之间相互引用，形成一个无限循环）的对象都不符合 JSON 结构标准，支持 JSON 的语言无法处理它们。
 // JSON.stringify(..) 在对象中遇到 undefined、function 和 symbol 时会自动将其忽略，在 数组中则会返回 null（以保证单元位置不变）。
 // 例如：
-JSON.stringify(undefined);      // undefined J
+JSON.stringify(undefined);      // undefined 
 SON.stringify(function () { });   // undefined 
 
-JSON.stringify([1, undefined, function () { }, 4]);                                // "[1,null,null,4]" 
-JSON.stringify({ a: 2, b: function () { } });                                // "{"a":2}"
+JSON.stringify([1, undefined, function () { }, 4]);  // "[1,null,null,4]" 
+JSON.stringify({ a: 2, b: function () { } });  // "{"a":2}"
 // 对包含循环引用的对象执行 JSON.stringify(..) 会出错。
 // 重点：如果对象中定义了 toJSON() 方法，JSON 字符串化时会首先调用该方法，然后用它的返回 值来进行序列化。
 // 如果要对含有非法 JSON 值的对象做字符串化，或者对象中的某些值无法被序列化时，就 需要定义 toJSON() 方法来返回一个安全的 JSON 值。
@@ -104,6 +104,7 @@ var d = "";
 var e = 0;
 var f = null;
 var g;
+var h = " "
 // 重点：!a先将a字符串转换为布尔值false,但是a转换为布尔值是true，所以在加一个！
 !!a;    // true 
 !!b;    // true 
@@ -113,6 +114,7 @@ var g;
 !!e;    // false 
 !!f;    // false 
 !!g;    // false
+!!h;    // true
 if (a) {
     console.log('隐式转换字符串a')
 } //在 if(..).. 这样的布尔值上下文中，如果没有使用 Boolean(..) 和 !!，就会自动隐式地进 行 ToBoolean 转换。
