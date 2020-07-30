@@ -1,5 +1,7 @@
 // 4.3.2　链式loader
 // 如，对于SCSS类型的资源来说，我们需要sass-loader来处理其语法，并将其编译为CSS；
+// 这是因为css-loader的作用仅仅是处理CSS的各种加载语法（@import和url()函数等），
+// 如果要使样式起作用还需要style-loader来把样式插入页面。css-loader与style-loader通常是配合在一起使用的
 // 接着再用css-loader处理CSS的各类加载语法；最后使用style-loader来将样式字符串包装成style标签插入页面
 module.exports = {
     // ...
