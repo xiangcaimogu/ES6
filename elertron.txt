@@ -1,0 +1,9 @@
+命令：npm install electron --save-dev
+//打包vue项目
+命令：vue add electron-builder
+
+
+//查看package
+vue run electron:build
+
+//警告:路径不要有中文
