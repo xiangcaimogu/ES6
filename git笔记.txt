@@ -1,0 +1,14 @@
+git branch <分支名>  创建分支
+git checkout branchName   切换分支
+以上两步合并
+git checkout -b banchName
+
+
+拉远程分支
+git fetch origin develop
+git checkout -b develop origin/develop
+git pull origin develop
+
+
+单个文件回退
+git checkout 版本号  文件名路径/文件名
