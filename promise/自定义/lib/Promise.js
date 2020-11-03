@@ -53,7 +53,7 @@
         }
 
 
-        //1. 第一步执行传进来的同步函数excutor
+        //1. 第一步执行传进来的同步函数excutor,传入resolve，reject函数出去，等待外面执行resolve()
         try {
             excutor(resolve, reject)
         } catch (erroe) {
@@ -64,32 +64,33 @@
      * Promise 原型对象的then()
      * 指定成功和失败的回调函数
      */
+    /** then是同步函数，传进来的两个函数onResolved,和onRejexted会保存到that.callback里面，然后当外面调用resolve函数时，
+     * resolve函数里面会调用这两个函数onResolved,和onRejexted,并且把resolve(res)拿到的异步结果传个他们
+     * 并且nResolved,和onRejexted这两函数是异步执行
+    */
     Promise.prototype.then = function (onResolved, onRejexted) {
         const that = this
         return new Promise((resolve, reject) => {
             if (that.status === PENDING) {
-                that.callbacks.push({
-                    onResolved: onResolved,
-                    onRejexted: onRejexted
+                that.callbacks.push({  //保存
+                    onResolved, //这两个函数缺少resolve(),把结果传给下一个then
+                    onRejexted
                 })
             } else if (that.status === RESOLVE) {
                 setTimeout(() => {
-                    /**
-                     * 1.如果抛出异常，return的promise就会失败，
-                     * 2.如果回调函数onResolved返回的是promise(也就是说外部调用的then(这里有异步操作)里面返回了 new Promise),return的promise就结果就是这个回调函数的结果
-                     * 3.如果回调函数onResolved返回不是promise，return的promise就会成功，value就是返回值
-                     */
                     try {
-                        const result = onResolved(that.data)
+                        const result = onResolved(that.data) 
+                        /** 执行onResolved(that.data)就是第一个then传进来的回调函数,res => { console.log(res) return 2 }
+                         * return 2 意味着result就是等于2，因为返回的不是promise，所以直接resolve(2)交给下一个then*/
                         if( result instanceof Promise){
-                            result.then(value=>{
+                            result.then(value=>{ //(如果回调函数onResolved返回的是promise)拿到这个promise的结果，在resolve给下一个then 
                                 resolve(value)
                             },
                             error=>{
                                 reject(error)
                             })
                         }else {
-                            resolve(reslut)
+                            resolve(reslut) //如果回调函数onResolved返回不是promise，直接resolve给下一个then
                         }
                     } catch (error) {
                         reject(error)

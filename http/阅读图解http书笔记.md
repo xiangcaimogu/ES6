@@ -297,8 +297,13 @@ application/octet-stream, application/zip ...
 <!-- 首部字段 Retry-After 告知客户端应该在多久之后再次发送请求。主要 配合状态码 503 Service Unavailable 响应，或 3xx Redirect 响应一起使 用。
 字段值可以指定为具体的日期时间（Wed, 04 Jul 2012 06：34：24 GMT 等格式），也可以是创建响应后的秒数。  -->
 
-
-
+#### 6.5.9 WWW-Authenticate
+<!-- 状态码 401 Unauthorized 响应中，
+肯定带有首部字段 WWW-Authenticate
+首部字段 WWW-Authenticate 用于 HTTP 访问认证。它会告知客户端
+适用于访问请求 URI 所指定资源的认证方案（Basic 或是 Digest）和
+带参数提示的质询（challenge）。
+WWW-Authenticate: Basic realm="Usagidesign Aut -->
 ==========================================================================================
 
 

@@ -46,7 +46,7 @@
     //改变Promise状态和指定回调函数谁先谁后？
     // 答：都有可能
     // 2.如何先改变状态再指定回调？
-    // 在执行器中直接调用reslove()/reject()
+    // 在执行器中直接调用reslove()/reject(),这两个函数的执行，改变状态
     // 延迟更长时间才调用then()
     //3.什么时候才能得到数据？
     // 如果先制定的回调，那当前状态发生改变时，回调函数就会调用，得到数据
@@ -97,7 +97,8 @@
     )
 
 
-// then 接收前一个then的结果是，前一个then必须要return一个结果,return 同步的结果时，直接return，return 异步的操作时，需要return一个new Promise
+/***then 接收前一个then的结果是，前一个then必须要return一个结果,return 同步的结果时，
+直接return，return 异步的操作时，需要return一个new Promise */ 
 //下面是then 里面执行新的异步操作时
     new Promise((reslove, reject) => {
         reslove(1)
@@ -124,4 +125,39 @@
         console.log(value)
     })
 
+
+
+
+    /** 重点：说明then传进去的两个回调函数是异步执行的*/
+new Promise((resolve,reject)=>{
+    resolve(1) //1.excutor函数同步立即执行，resolve(1)函数立即改变状态，
+}).then(
+    value=> {console.log("value",value)},//2.如果这两个回调函数是同步执行，应该resolve状态改变就立即执行，
+                                        //resolve执行会执行这两个回调，但还是在console。log("======")后面执行，说明这两个回调是异步执行
+    reason=>{ console.log("reason",reason)}
+)
+console.log("===========")
+
+
+
+
+/** axios拦截器就支持return config 或者return new Promise
+ * return 的作用说明用then()方法接收返回值，只不过return config 直接返回的同步结果给then，return Promise时 会resolve()一个结果出去
+ * 如果不return 一个promise,后面不能用then方法
+ * 下面的语法就是axios拦截器里支持的语法 */
+.then(
+    value => {
+        return conifg //同步结果直接return，最后的then会接收到conifg
+    },
+).then(
+    value => {
+        return new Promise(reslove => { //异步结果return 一个Promise，最后的then会接收到reslove(conifg)
+            setTimeout(() => {
+                reslove(conifg)
+            }, 1000)
+        })
+    }
+).then((value) => {
+    console.log(value)
+}) 
 </script>
