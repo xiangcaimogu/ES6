@@ -17,5 +17,7 @@ function myModule() {
 }
 
 var module = myModule();//产生闭包
-
+console.log(module)
+debugger
 module.doSomething()
+debugger

@@ -174,9 +174,9 @@ var MyModules = (function Manager() {
 
     function define(name, deps, impl) {
         for (var i = 0; i < deps.length; i++) {
-            deps[i] = modules[deps[i]];
+            deps[i] = modules[deps[i]];//deps数组变成对应模块的数组平且作为参数注入到当前模块的函数中
         }
-        modules[name] = impl.apply(impl, deps);
+        modules[name] = impl.apply(impl, deps);//作为参数注入到当前模块的函数中
     }
 
     function get(name) {

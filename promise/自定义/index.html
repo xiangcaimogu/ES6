@@ -12,6 +12,14 @@
 </body>
 <script src="./lib/Promise.js"></script>
 <script>
+/** (reslove, reject) => {
+        setTimeout(() => {
+            reslove(11)
+        }, 100)
+    }
+    这个是传进去的函数，excutor是同步立马执行的，不然定时器都不运行
+    */
+
     new Promise((reslove, reject) => {
         setTimeout(() => {
             reslove(11)

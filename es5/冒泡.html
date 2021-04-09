@@ -27,13 +27,13 @@
             console.log('你点了最中间的box');
         }
         function sayBox1() {
-            // event.stopPropagation();
+            // event.stopPropagation(); //取消捕获和冒泡
             console.log('你点了最外面的box');
         }
         // 事件监听，第三个参数是布尔值，默认false，false是事件冒泡，true是事件捕获
-        document.getElementById('box3').addEventListener('click', sayBox3, false);
-        document.getElementById('box2').addEventListener('click', sayBox2, false);
-        document.getElementById('box1').addEventListener('click', sayBox1, false);
+        document.getElementById('box3').addEventListener('click', sayBox3, true);
+        document.getElementById('box2').addEventListener('click', sayBox2, true);
+        document.getElementById('box1').addEventListener('click', sayBox1, true);
 
     </script>
 </body>
