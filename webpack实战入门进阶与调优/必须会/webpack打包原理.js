@@ -12,12 +12,16 @@
       // modules：以key-value的形式储存所有被打包的模块
       0: function(module, exports, __webpack_require__) {
         // 打包入口
+        console.log("1111")
         module.exports = __webpack_require__("3qiv");
       },
       "3qiv": function(module, exports, __webpack_require__) {
+        console.log("222")
         // index.js内容
       },
       jkzz: function(module, exports) {
+        console.log("333")
         // calculator.js 内容
       }
     });
+    
