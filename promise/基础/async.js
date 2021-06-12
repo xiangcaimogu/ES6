@@ -34,12 +34,14 @@ function fn2(){
         },2000)
     })
 }
-// function fn2(){
-//     return 4
-// }
+function fn2(){
+    return 4
+}
 async function fn() {
     try {
-        const value = await fn2() //fn2函数可以是异步，可以是同步函数，但是不管同步异步，都会变成Promise对象
+        // fn2函数返回的是一个promise对象，await 会暂停等待promise返回的reslove状态的值
+        // fn2函数返回的不是一个promise对象，这边会同步执行，不会暂停等待
+        const value = await fn2()
         console.log(value)
     } catch (err) {
         console.log(err)
