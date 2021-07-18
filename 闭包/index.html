@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name) {
+            var age;
+            function setage(n) {
+                age = n
+            }
+            function getage() {
+                return age
+            }
+            return {
+                name: name,
+                setage: setage,
+                getage: getage
+            }
+        }
+        //闭包的应用，对函数内部的数据进行操作
+        var p1 = Person('lili');
+        p1.setage(20);
+        console.log(p1.getage())
+    </script>
+</body>
+
+</html>

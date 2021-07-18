@@ -12,9 +12,11 @@
 
 
 function Resource() {
-    if (Resource.instance)
+    if (Resource.instance) {
         return Resource.instance
-    else {
+    } else {
+        // this 指向第一个实例r,{balance:50}
+        //静态属性 保存下第一个实例
         Resource.instance = this
     }
 }
@@ -27,5 +29,5 @@ console.log('r', r2)
 
 /**
  * @params {string} name
- * @return 
+ * @return
  */

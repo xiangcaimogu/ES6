@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cache": "nodemon ./index.js"
+    "cache": "node ./index.js"
   },
   "author": "webfansplz",
   "license": "MIT",
