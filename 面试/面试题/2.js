@@ -19,6 +19,7 @@ var arr = [1, 2, [3, 4, [5, 6], 7, 8]];
 console.log(flatten1(arr));
 console.log(flatten2(arr));
 
+// 方法三
 function sortFlatArray(arr) {
     function flatArray(arr) {
         const newArr = arr.flat()

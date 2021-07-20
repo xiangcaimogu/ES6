@@ -23,3 +23,18 @@ console.log(p1.__proto__)
 // __proto__:
 //     constructor: ƒ Person(name)
 //     __proto__: Object
+
+
+
+// 实例.__proto__ === 原型
+
+// 原型.constructor === 构造函数
+
+// 构造函数.prototype === 原型
+// 这条线其实是是基于原型进行获取的，可以理解成一条基于原型的映射线
+// 例如: 
+// const o = new Object()
+// o.constructor === Object   --> true
+// o.__proto__ = null;
+// o.constructor === Object   --> false   说明实例的constructor也是继承原型来的
+// 实例.constructor === 构造函数

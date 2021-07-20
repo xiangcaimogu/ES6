@@ -25,7 +25,9 @@
     * 为了准确无误地将数据送达目标处，TCP 协议采用了三次握手 （three - way handshaking）策略。用 TCP 协议把数据包送出去后，TCP 不会对传送后的情况置之不理，它一定会向对方确认是否成功送达。
 * 握手过程中使用了 TCP 的标志（flag） —— SYN（synchronize） 和 ACK（acknowledgement）。 
 * 发送端首先发送一个带 SYN 标志的数据包给对方。接收端收到后， 回传一个带有 SYN / ACK 标志的数据包以示传达确认信息。最后，发 送端再回传一个带 ACK 标志的数据包，代表“握手”结束。 
-
+第一次client => server 只能server判断出client具备发送能力
+第二次 server => client client就可以判断出server具备发送和接受能力。此时client还需让server知道自己接收能力没问题于是就有了第三次
+第三次 client => server 双方均保证了自己的接收和发送能力没有问题
 #### 　负责域名解析的 DNS 服务
     * DNS（Domain Name System）服务是和 HTTP 协议一样位于应用层的 协议。它提供域名到 IP 地址之间的解析服务。 计算机既可以被赋予 IP 地址，也可以被赋予主机名和域名。比如 www.hackr.jp
 
